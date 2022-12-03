@@ -4,3 +4,11 @@ tsc -W                                    # run compiler with watch
 const color  = 'red' 
 color[0]               # r 
 color[0] = 'Y'         # still -> red 
+
+in javascript: 
+"X" > "a"                      # false because sorting in this case relay on : 
+"X".charCodeAt(0)              # 88 
+"a".charCodeAt(0)              # 97  
+
+while this is valid in js =>  typeof [ ]  # 'object'
+but in ts it will allow you use typeof with primitive values only,  and instanceof for the other values 

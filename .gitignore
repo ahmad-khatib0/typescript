@@ -43,3 +43,4 @@ dist
 .parcel-cache
 
 tags
+build/*
