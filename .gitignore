@@ -41,3 +41,5 @@ test/*.js
 
 dist
 .parcel-cache
+
+tags

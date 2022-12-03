@@ -1,0 +1,6 @@
+tsc -W                                    # run compiler with watch 
+"start": "concurrently npm:start:*"       #tells concurrently to look on every script begins with start
+
+const color  = 'red' 
+color[0]               # r 
+color[0] = 'Y'         # still -> red 
