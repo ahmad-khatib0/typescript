@@ -43,4 +43,6 @@ dist
 .parcel-cache
 
 tags
-build/*
+
+build
+.vscode
