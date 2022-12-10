@@ -1,17 +1,7 @@
 import { User } from './models/User'
 
-const user = new User({ name: 'ali', age: 44 })
-
-user.on('change', () => {
-  console.log('change #1')
-})
-
-user.on('change', () => {
-  console.log('change #2')
-})
-
-user.on('save', () => {
-  console.log('save was triggerd')
-})
-
-user.trigger('change')
+// const user = new User({ id: 1 })
+// user.set({ name: 'new name' })
+// user.set({ age: 44 })
+const user = new User({ name: 'new record ', age: 444 })
+user.save()
