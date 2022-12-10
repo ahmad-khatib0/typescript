@@ -5,7 +5,11 @@ export class Attributes<T> {
   // so now THIS HERE IS LIKE  e.g being the id string as a type , so here the object's keys are the TYPES
   // and the return type which is T[K]  is like for example user['id'],
   // so return one of the needed keys that are existed inside this generic T
-  get<K extends keyof T>(key: K): T[K] {
+  // get<K extends keyof T>(key: K): T[K] {
+  //   return this.data[key]
+  // }
+  // converted to anonymous function to fix `this` issue
+  get = <K extends keyof T>(key: K): T[K] => {
     return this.data[key]
   }
 
