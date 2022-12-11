@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios'
+
 import { Eventing } from './Eventing'
 import { Sync } from './Sync'
 import { Attributes } from './Attributes'
@@ -28,5 +30,29 @@ export class User {
 
   get get() {
     return this.attributes.get
+  }
+
+  set(update: UserProps): void {
+    this.attributes.set(update)
+    this.events.trigger('change')
+  }
+
+  fetch(): void {
+    const id = this.get('id') // its referncing this get , not that inside Attributes class,
+    // does it matter, it depends, e,g here it does not, but for example with this.set(response.data) inside the
+    // then block , invocking this set will trigget the event emitter, while invocking the set inside the
+    // attributes class will not,
+
+    if (typeof id != 'number') {
+      throw new Error('can not fetch without an ID!')
+    }
+    this.sync.fetch(id).then((response: AxiosResponse): void => this.set(response.data))
+  }
+
+  save(): void {
+    this.sync
+      .save(this.attributes.getAll())
+      .then((res: AxiosResponse): void => this.trigger('save'))
+      .catch(() => this.trigger('error'))
   }
 }
