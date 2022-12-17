@@ -1,4 +1,5 @@
 import { User } from './models/User'
+import { UserForm } from './views/UserForm'
 
 // const user = new User({ id: 1 })
 // user.set({ name: 'new name' })
@@ -20,6 +21,15 @@ import { User } from './models/User'
 // user.fetch()
 //
 
-const collection = User.buildUserCollection()
-collection.on('change', () => console.log(collection))
-collection.fetch()
+// const collection = User.buildUserCollection()
+// collection.on('change', () => console.log(collection))
+// collection.fetch()
+
+const root = document.querySelector('#root')
+const user = User.buildUser({ name: 'name', age: 395 })
+if (root) {
+  const userForm = new UserForm(root, user)
+  userForm.render()
+} else {
+  throw new Error('Root element is not found!')
+}
