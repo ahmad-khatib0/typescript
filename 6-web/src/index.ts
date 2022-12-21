@@ -1,5 +1,5 @@
 import { User } from './models/User'
-import { UserForm } from './views/UserForm'
+import { UserEdit } from './views/UserEdit'
 
 // const user = new User({ id: 1 })
 // user.set({ name: 'new name' })
@@ -28,8 +28,9 @@ import { UserForm } from './views/UserForm'
 const root = document.querySelector('#root')
 const user = User.buildUser({ name: 'name', age: 395 })
 if (root) {
-  const userForm = new UserForm(root, user)
-  userForm.render()
+  const userEdit = new UserEdit(root, user)
+  userEdit.render()
+  console.log(userEdit)
 } else {
   throw new Error('Root element is not found!')
 }
