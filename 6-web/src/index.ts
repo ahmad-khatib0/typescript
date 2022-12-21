@@ -1,5 +1,7 @@
-import { User } from './models/User'
+import { Collection } from './models/Collection'
+import { User, UserProps } from './models/User'
 import { UserEdit } from './views/UserEdit'
+import { UserList } from './views/UserList'
 
 // const user = new User({ id: 1 })
 // user.set({ name: 'new name' })
@@ -25,12 +27,22 @@ import { UserEdit } from './views/UserEdit'
 // collection.on('change', () => console.log(collection))
 // collection.fetch()
 
-const root = document.querySelector('#root')
-const user = User.buildUser({ name: 'name', age: 395 })
-if (root) {
-  const userEdit = new UserEdit(root, user)
-  userEdit.render()
-  console.log(userEdit)
-} else {
-  throw new Error('Root element is not found!')
-}
+// const root = document.querySelector('#root')
+// const user = User.buildUser({ name: 'name', age: 395 })
+// if (root) {
+//   const userEdit = new UserEdit(root, user)
+//   userEdit.render()
+//   console.log(userEdit)
+// } else {
+//   throw new Error('Root element is not found!')
+// }
+
+const users = new Collection('http://localhost:3000/users', (json: UserProps) => {
+  return User.buildUser(json)
+})
+
+users.on('change', () => {
+  const root = document.getElementById('root')
+  if (root) new UserList(root, users).render()
+})
+users.fetch()
