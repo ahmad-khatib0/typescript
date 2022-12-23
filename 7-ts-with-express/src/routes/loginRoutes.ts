@@ -23,8 +23,14 @@ router.get('/login', (req: Request, res: Response) => {
 
 router.post('/login', (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body
-  if (email) res.send(email.toLowerCase())
-  else res.send('you must provide an email ')
+
+  if (email && password && email == 'hi@test.com' && password == 'password') {
+    // we have not to extend the session type declaration and correct it, beucause it is will implemented
+    req.session = { isLoggedIn: true }
+    res.redirect('/')
+  } else {
+    res.send('invalid email or password')
+  }
 })
 
 export { router }
