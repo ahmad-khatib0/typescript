@@ -34,6 +34,7 @@ function testDecorator(target: any, key: string) {
   console.log(key)
 }
 
+// decorators that receive  arguments are called factory decorators
 function logError(errorMsg: string) {
   return function (target: any, key: string, desc: PropertyDescriptor): void {
     // console.log('Target: ', target)
