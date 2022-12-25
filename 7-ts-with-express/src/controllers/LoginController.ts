@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { get, controller, use } from './decorators'
+import { get, controller, use, post, bodyValidator } from './decorators'
 
 @controller('/auth')
 class LoginController {
@@ -17,5 +17,19 @@ class LoginController {
      </div>
      <button>Submit</button> 
   </form>`)
+  }
+
+  @post('/login')
+  @bodyValidator('email', 'password')
+  postLogin(req: Request, res: Response) {
+    const { email, password } = req.body
+
+    if (email && password && email == 'hi@test.com' && password == 'password') {
+      // we have not to extend the session type declaration and correct it, beucause it is will implemented
+      req.session = { isLoggedIn: true }
+      res.redirect('/')
+    } else {
+      res.send('invalid email or password')
+    }
   }
 }

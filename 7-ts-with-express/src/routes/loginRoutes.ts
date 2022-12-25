@@ -15,18 +15,6 @@ function requireAuth(req: Request, res: Response, next: NextFunction): void {
 
 const router = Router()
 
-router.post('/login', (req: RequestWithBody, res: Response) => {
-  const { email, password } = req.body
-
-  if (email && password && email == 'hi@test.com' && password == 'password') {
-    // we have not to extend the session type declaration and correct it, beucause it is will implemented
-    req.session = { isLoggedIn: true }
-    res.redirect('/')
-  } else {
-    res.send('invalid email or password')
-  }
-})
-
 router.get('/', (req: Request, res: Response) => {
   // this left check is a type guard, in order to access isLoggedIn in the right check
   if (req.session && req.session.isLoggedIn) {
