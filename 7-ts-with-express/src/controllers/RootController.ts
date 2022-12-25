@@ -11,7 +11,7 @@ function requireAuth(req: Request, res: Response, next: NextFunction): void {
 }
 
 @controller('') // prevent having tow slashes
-export class RootController {
+class RootController {
   @get('/')
   getRoot(req: Request, res: Response) {
     // this left check is a type guard, in order to access isLoggedIn in the right check
