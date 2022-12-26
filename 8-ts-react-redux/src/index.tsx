@@ -8,6 +8,12 @@ interface AppState {
   counter?: number
 }
 
+// Functional Component
+
+// const App = (props: AppProps): JSX.Element => {
+//   return <div>{props.color}</div>
+// }
+
 export class App extends React.Component<AppProps, AppState> {
   // state = { counter: 0 }  // this is shorter, you don't need the constructor and AppState with it
   // NOTE: you need to chose an option only, ethier the the constructor approach or this shorter one
