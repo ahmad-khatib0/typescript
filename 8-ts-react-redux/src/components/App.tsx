@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchTodos, Todo } from '../store/actions'
+import { deleteTodo, fetchTodos, Todo } from '../store/actions'
 import { StoreState } from '../store/reducers'
 
 interface AppProps {
   todos: Todo[]
-  fetchTodos(): any
+  // fetchTodos : typeof fetchTodos ;
+  fetchTodos: Function // this is just a workaround, because of that fetchTodos returns a THUNK
+  // action , not a normal action like deleteTodo does, so the issue is comming from the connect
+  // react-redux function, it has no Logic to handle a Promise<void> action that is returned from thunk
+  deleteTodo: typeof deleteTodo
 }
 
 class _App extends Component<AppProps> {
@@ -13,9 +17,18 @@ class _App extends Component<AppProps> {
     this.props.fetchTodos()
   }
 
+  onTodoClick = (id: number): void => {
+    this.props.deleteTodo(id)
+  }
+
   renderList(): JSX.Element[] {
     return this.props.todos.map((e: Todo) => {
-      return <div key={e.id}> {e.title} </div>
+      return (
+        <div key={e.id} onClick={() => this.onTodoClick(e.id)}>
+          {' '}
+          {e.title}{' '}
+        </div>
+      )
     })
   }
 
@@ -33,4 +46,4 @@ const mapStateToProps = ({ todos }: StoreState): { todos: Todo[] } => {
   return { todos }
 }
 
-export const App = connect(mapStateToProps, { fetchTodos })(_App)
+export const App = connect(mapStateToProps, { fetchTodos, deleteTodo })(_App)
