@@ -1,9 +1,9 @@
-import { RequestHandler } from 'express'
 import 'reflect-metadata'
-import { MetadataKeys } from './MetadataKeys'
+import { RequestHandler } from 'express'
 import { Methods } from './Methods'
+import { MetadataKeys } from './MetadataKeys'
 
-interface RouteHandlerDescriptor extends PropertyDecorator {
+interface RouteHandlerDescriptor extends PropertyDescriptor {
   value?: RequestHandler
 }
 
@@ -17,7 +17,7 @@ function routeBinder(method: string) {
 }
 
 export const get = routeBinder(Methods.get)
-export const post = routeBinder(Methods.post)
 export const put = routeBinder(Methods.put)
+export const post = routeBinder(Methods.post)
 export const del = routeBinder(Methods.del)
 export const patch = routeBinder(Methods.patch)

@@ -16,7 +16,7 @@ const oldCivic = {
   },
 };
 
-const drink = {
+const drinkObject = {
   color: 'brown',
   carbonated: true,
   sugar: 30,
@@ -36,4 +36,4 @@ const printSummary = (item: Reportable): void => {
 
 //oldCivic should satisfy what needed inside the Reportable interface only, and CAN HAS ITS OWN METHODS
 printSummary(oldCivic);
-printSummary(drink);
+printSummary(drinkObject);

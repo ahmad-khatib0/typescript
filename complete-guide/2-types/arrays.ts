@@ -5,7 +5,7 @@ const carsByMake = [['f250'], ['corolla'], ['camaro']];
 
 ////////////////////////////// why to use array annotations? ////////////////////////////
 // help with inference when extracting values
-const car = carMakers[0]; // string
+const firstCar = carMakers[0]; // string
 const pop = carMakers.pop();
 
 //prevent incompatible values

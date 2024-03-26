@@ -19,7 +19,7 @@ export class LinkedList extends Sorter {
 
     let tail = this.head // reference to the first element in the chain
     while (tail.next) {
-      tail = tail.next // keep pushing the tail each time to the right untill the end
+      tail = tail.next // keep pushing the tail each time to the right until the end
     }
 
     tail.next = node // make the last pointer points to the last element that we got from the while loop

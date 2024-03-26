@@ -10,7 +10,7 @@ class Vehicle {
 
 const vehicle = new Vehicle('blue');
 
-class Car extends Vehicle {
+class MyCar extends Vehicle {
   // you can not change the access modifier in a child class
   // private drive(): void {
   //   console.log('vroom');
@@ -27,6 +27,6 @@ class Car extends Vehicle {
   }
 }
 
-const car = new Car(4, 'blue');
-car.startDrivingCar();
-car.startHunk();
+const myCar = new MyCar(4, 'blue');
+myCar.startDrivingCar();
+myCar.startHunk();

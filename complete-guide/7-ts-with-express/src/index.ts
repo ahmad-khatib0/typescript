@@ -11,4 +11,4 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieSession({ keys: ['asldfdadfsfd'] }))
 app.use(AppRouter.getInstance())
 
-app.listen(3000, () => console.log('listining on port 3000'))
+app.listen(3000, () => console.log('listening on port 3000'))
